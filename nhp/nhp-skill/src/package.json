@@ -1,0 +1,20 @@
+{
+  "name": "skill-newhydepark",
+  "version": "1.0.0",
+  "description": "A New Hyde Park guide.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "alexa",
+    "skill",
+    "new hyde park"
+  ],
+  "author": "Amazon.com",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "alexa-sdk": "^1.0.11",
+    "ical": "^0.5.0"
+  }
+}
