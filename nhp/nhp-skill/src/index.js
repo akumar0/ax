@@ -16,7 +16,7 @@ var welcomeMessage = location + " Guide. You can ask me for an attraction, the l
 
 var welcomeRepromt = "You can ask me for an attraction, the local news, or  say help. What will it be?";
 
-var locationOverview = "New Hyde Park is an East Coast locality in Nassau County. With an estimated 20,000 residents as of 2015, New Hyde Park is one of the largest localities in Nassau County.  What else would you like to know?";
+var locationOverview = "New Hyde Park is an East Coast locality in Nassau County. With an estimated 20,000 residents as of 2015, New Hyde Park is one of the largest localities in Nassau County.";
 
 var HelpMessage = "Here are some things you  can say: Give me an attraction. Tell me about " + location + ". Tell me the top five things to do. Tell me the local news.  What would you like to do?";
 
@@ -76,6 +76,49 @@ var newSessionHandlers = {
         this.handler.state = states.SEARCHMODE;
         this.emitWithState('getTopFiveIntent');
     },
+    'getOverview': function () {
+        output = locationOverview;
+        //this.emit(':askWithCard', output, location, locationOverview);
+        this.emit(':tell', locationOverview);
+    },    
+    'getNewsIntent': function () {
+        this.emit(':tell', "There is no important news for " + location + " at this time.");
+        /*httpGet(location, function (response) {
+
+            // Parse the response into a JSON object ready to be formatted.
+            var responseData = JSON.parse(response);
+            var cardContent = "Data provided by New York Times\n\n";
+
+            // Check if we have correct data, If not create an error speech out to try again.
+            if (responseData == null) {
+                output = "There is no important news at this time.";
+            }
+            else {
+                output = newsIntroMessage;
+
+                // If we have data.
+                for (var i = 0; i < responseData.response.docs.length; i++) {
+
+                    if (i < numberOfResults) {
+                        // Get the name and description JSON structure.
+                        var headline = responseData.response.docs[i].headline.main;
+                        var index = i + 1;
+
+                        output += " Headline " + index + ": " + headline + ";";
+
+                        cardContent += " Headline " + index + ".\n";
+                        cardContent += headline + ".\n\n";
+                    }
+                }
+
+                output += " See your Alexa app for more information.";
+            }
+
+            var cardTitle = location + " News";
+
+            alexa.emit(':tellWithCard', output, cardTitle, cardContent);
+        });*/
+    },    
     'AMAZON.StopIntent': function () {
         this.emit(':tell', goodbyeMessage);
     },
@@ -96,7 +139,8 @@ var newSessionHandlers = {
 var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     'getOverview': function () {
         output = locationOverview;
-        this.emit(':askWithCard', output, location, locationOverview);
+        //this.emit(':askWithCard', output, location, locationOverview);
+        this.emit(':tell', locationOverview);
     },
     'getAttractionIntent': function () {
         var cardTitle = location;
@@ -140,7 +184,8 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
         this.emit(':ask', output, HelpMessage);
     },
     'getNewsIntent': function () {
-        httpGet(location, function (response) {
+        this.emit(':tell', "There is no important news for " + location + " at this time.");
+        /*httpGet(location, function (response) {
 
             // Parse the response into a JSON object ready to be formatted.
             var responseData = JSON.parse(response);
@@ -148,7 +193,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             // Check if we have correct data, If not create an error speech out to try again.
             if (responseData == null) {
-                output = "There was a problem with getting data please try again";
+                output = "There is no important news at this time.";
             }
             else {
                 output = newsIntroMessage;
@@ -174,7 +219,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
             var cardTitle = location + " News";
 
             alexa.emit(':tellWithCard', output, cardTitle, cardContent);
-        });
+        });*/
     },
 
     'AMAZON.RepeatIntent': function () {
@@ -290,7 +335,9 @@ function httpGet(query, callback) {
     req.end();
 
     req.on('error', (e) => {
-        console.error(e);
+        //console.error(e);
+        var body ='There is no important news at this time.';
+        callback(body);
     });
 }
 
