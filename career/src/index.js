@@ -17,7 +17,7 @@ var states = {
 
 
 // Questions
-var nodes = [{ "node": 1, "message": "Do you like working with people", "yes": 2, "no": 3 },
+var nodes1 = [{ "node": 1, "message": "Do you like working with people", "yes": 2, "no": 3 },
              { "node": 2, "message": "Do you like caring for others", "yes": 4, "no": 5 },
              { "node": 3, "message": "Would you like to work during the day", "yes": 6, "no": 7 },
              { "node": 4, "message": "Can you stand the sight of blood", "yes": 8, "no": 9 },
@@ -36,13 +36,32 @@ var nodes = [{ "node": 1, "message": "Do you like working with people", "yes": 2
              { "node": 15, "message": "Lighthouse keeper", "yes": 0, "no": 0 , "description": "A lighthouse keeper is the person responsible for tending and caring for a lighthouse, particularly the light and lens in the days when oil lamps and clockwork mechanisms were used."},
 ];
 
+var nodes = [{ "node": 1, "message": "Do you like racket sports", "yes": 2, "no": 3 },
+             { "node": 2, "message": "Do you like to play outdoors", "yes": 4, "no": 5 },
+             { "node": 3, "message": "Do you like to play outdoors", "yes": 6, "no": 7 },
+             { "node": 4, "message": "Do you like team sports", "yes": 8, "no": 9 },
+             { "node": 5, "message": "Do you like very fast reaction time", "yes": 10, "no": 11 },
+             { "node": 6, "message": "Do you like to play with a ball", "yes": 12, "no": 13 },
+             { "node": 7, "message": "Are you very flexible and strong", "yes": 14, "no": 15 },
+
+// Answers & descriptions
+             { "node": 8, "message": "Lacrosse", "yes": 0, "no": 0, "description": "Lacrosse is a team sport that involves scoring using a stick with a net" },
+             { "node": 9, "message": "Tennis", "yes": 0, "no": 0, "description": "Tennis is a great individual racket sport played across the world in hard and soft courts mostly outdoors"},
+             { "node": 10, "message": "Racket Ball", "yes": 0, "no": 0 , "description": "Racket ball is played indoors with a short racket and very bouncy ball. You will need fast reaction times and quickness."},
+             { "node": 11, "message": "Squash", "yes": 0, "no": 0 , "description": "Squash is played indoors with a long racket and slow ball. You will need to generate a lot of power and is a fantastic workout."},
+             { "node": 12, "message": "Soccer", "yes": 0, "no": 0 , "description": "Soccer is a great outdoor team sport. You play with a medium size ball and run around the field trying to score goals while working in a team."},
+             { "node": 13, "message": "Running", "yes": 0, "no": 0 , "description": "Running is a great individual outdoor active sport. You can run almost anywhere while training and compete on an individual basis."},
+             { "node": 14, "message": "Gynmanstics", "yes": 0, "no": 0 , "description": "Gymnastics is a great sport that requires strength and flexibility. It is played indoors around the world. You can compete in various kinds of events. "},
+             { "node": 15, "message": "Swimming", "yes": 0, "no": 0 , "description": "Swimming is both a great workout and a sport that you can enjoy indoors. You can swim for hours while building endurance without impacting your joints."},
+];
+
 // this is used for keep track of visted nodes when we test for loops in the tree
 var visited;
 
 // These are messages that Alexa says to the user during conversation
 
 // This is the intial welcome message
-var welcomeMessage = "Welcome to decision tree, are you ready to play?";
+var welcomeMessage = "Welcome to find your ideal sport, are you ready to play?";
 
 // This is the message that is repeated if the response to the initial welcome message is not heard
 var repeatWelcomeMessage = "Say yes to start the game or no to quit.";
@@ -60,7 +79,7 @@ var decisionMessage = "I think you would make a good";
 var playAgainMessage = "Say 'tell me more' to hear a short description for this profession, or do you want to play again?";
 
 // this is the help message during the setup at the beginning of the game
-var helpMessage = "I will ask you some questions that will identify what you would be best at. Want to start now?";
+var helpMessage = "I will ask you some questions that will identify what sports you would enjoy the most. Want to start now?";
 
 // This is the goodbye message when the user has asked to quit the game
 var goodbyeMessage = "Ok, see you next time!";

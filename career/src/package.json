@@ -1,12 +1,12 @@
 {
-  "name": "DecisionTree",
+  "name": "SportsDecision",
   "version": "1.0.0",
-  "description": "Alexa Decision Tree template",
+  "description": "Find Your Sport",
   "main": "index.js",
   "dependencies": {
     "alexa-sdk": "^1.0.11"
   },
   "devDependencies": {},
-  "author": "Amazon.com",
+  "author": "Rimpal Kumar",
   "license": "SEE LICENSE IN license.md"
 }
